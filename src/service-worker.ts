@@ -4,6 +4,9 @@
 
 import { build, files, timestamp } from "$service-worker";
 
+// version from package.json, this is a poor man's way to force a SW refresh
+const version = "v0.0.1" + timestamp;
+
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const FILES = `cache${timestamp}`;
 
@@ -13,6 +16,7 @@ const to_cache = build.concat(files);
 const staticAssets = new Set(to_cache);
 
 worker.addEventListener("install", (event) => {
+  console.log("Installing SW " + version);
   event.waitUntil(
     caches
       .open(FILES)
