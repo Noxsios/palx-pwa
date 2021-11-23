@@ -34,11 +34,11 @@
       id="picker"
       type="color"
       class="p-0.5 h-10 mr-3 cursor-pointer"
-      bind:value={color}
+      value={color}
       on:change={handleChange}
       required
     />
-    <input type="search" spellcheck="false" class="border rounded-md p-2" bind:value={color} on:change={handleChange} />
+    <input type="search" spellcheck="false" class="border rounded-md p-2" value={color} on:change={handleChange} />
   </section>
 
   {#each palette as colors}
