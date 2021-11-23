@@ -2,6 +2,7 @@
   import palx from "palx";
   import Footer from "$lib/Footer.svelte";
   import ColorBox from "$lib/ColorBox.svelte";
+  import DownloadText from "$lib/DownloadText.svelte";
 
   let color = "#ffbc00";
 
@@ -39,6 +40,11 @@
       required
     />
     <input type="search" spellcheck="false" class="border rounded-md p-2" value={color} on:change={handleChange} />
+  </section>
+
+  <section id="download-section" class="flex mt-4">
+    <DownloadText title="JSON" content={"JSON color palette"} />
+    <DownloadText title="CSS" content={"empty for now"} />
   </section>
 
   {#each palette as colors}

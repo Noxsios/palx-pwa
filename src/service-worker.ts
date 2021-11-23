@@ -5,7 +5,7 @@
 import { build, files, timestamp } from "$service-worker";
 
 // version from package.json, this is a poor man's way to force a SW refresh
-const version = "v0.0.1" + timestamp;
+const version = "v0.0.1_" + timestamp;
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const FILES = `cache${timestamp}`;
