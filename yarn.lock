@@ -219,6 +219,11 @@
     "@typescript-eslint/types" "4.33.0"
     eslint-visitor-keys "^2.0.0"
 
+"@zerodevx/svelte-toast@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.6.2.tgz#68de262a739d24be5a41d53b005b82b050365610"
+  integrity sha512-FrhG9BQgLMRSoZ/ttXQeHHdSP4jylzG8AGhLFhS3gg0mLvV+27QvunOW+NR2WtwUBH4MEg8JLST6z4ZGjTqkkQ==
+
 acorn-jsx@^5.3.1:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"

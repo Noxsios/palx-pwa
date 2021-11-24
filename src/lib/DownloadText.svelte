@@ -1,7 +1,8 @@
 <script>
   import { onMount } from "svelte";
+  export const ssr = false;
 
-  import ColorBox from "./ColorBox.svelte";
+  import { SvelteToast, toast } from "@zerodevx/svelte-toast";
 
   export let title;
   export let content;
@@ -12,6 +13,7 @@
   async function getNewFileHandle() {
     const options = fileOptions;
 
+    // @ts-ignore
     const handle = await window.showSaveFilePicker(options);
     // console.log(handle);
     return handle;
@@ -30,11 +32,18 @@
     getNewFileHandle().then((handle) => {
       writeFile(handle, content).then(() => {
         console.log(handle.name + " saved!");
+        toast.push(handle.name + " saved!", {
+          theme: {
+            "--toastBackground": "var(--color-green-500)",
+            "--toastBarBackground": "var(--color-green-600)"
+          }
+        });
       });
     });
   };
 
   onMount(() => {
+    // @ts-ignore
     if (!window.FileSystemWritableFileStream) {
       isSupported = false;
       title = "File System API not supported";
@@ -69,3 +78,5 @@
     </svg>
   </button>
 {/if}
+
+<SvelteToast />
