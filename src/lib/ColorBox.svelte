@@ -7,7 +7,7 @@
   };
 </script>
 
-<div class="m-2 cursor-pointer" on:click={copyToClipboard}>
+<div class="m-2 cursor-pointer hover:scale-110 transition-all" on:click={copyToClipboard}>
   <div class="rounded-md h-20 w-40 shadow-lg" style="background-color: {bg};" />
   <div class="flex mt-1">
     <strong class="text-xs text-gray-800 flex-1">{base} {index}</strong>

@@ -37,6 +37,6 @@
   <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" /> -->
 </svelte:head>
 
-<Canvas width={64} height={64} autoclear} style="display: none;">
+<Canvas width={64} height={64} autoclear style="display: none;">
   <Layer {render} />
 </Canvas>
