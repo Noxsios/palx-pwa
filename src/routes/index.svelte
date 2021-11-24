@@ -12,6 +12,15 @@
 
     if (val.length === 0 || val.length > 7) {
       return;
+    } else if (val.match(/^#[0-9a-f]{3}$/i)) {
+      // handle hex shorthand
+      color =
+        "#" +
+        val
+          .split("")
+          .slice(1)
+          .map((char) => char.repeat(2))
+          .join("");
     } else if (val.match(/^#[0-9A-Fa-f]{1,6}$/i)) {
       color = val.padEnd(7, "0");
     } else if (val.match(/^#[0-9A-Fa-f]{6}$/i)) {
