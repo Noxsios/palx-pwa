@@ -12,7 +12,7 @@
 
     if (val.length === 0 || val.length > 7) {
       return;
-    } else if (val.match(/^#[0-9a-f]{3}$/i)) {
+    } else if (val.match(/^#[0-9A-Fa-f]{3}$/i)) {
       // handle hex shorthand
       color =
         "#" +
