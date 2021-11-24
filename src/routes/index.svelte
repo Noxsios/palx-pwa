@@ -35,6 +35,7 @@
       values: value
     }))
     .filter((ele) => Array.isArray(ele.values));
+  $: jsonPalette = JSON.stringify(palx(color), null, 2);
 </script>
 
 <svelte:head>
@@ -64,8 +65,22 @@
   </section>
 
   <section id="download-section" class="flex mt-4">
-    <DownloadText title="JSON" content={"JSON color palette"} />
-    <DownloadText title="CSS" content={"empty for now"} />
+    <DownloadText
+      title="JSON"
+      content={jsonPalette}
+      fileOptions={{
+        suggestedName: `palx-${color.slice(1)}.json`,
+        types: [
+          {
+            description: "JSON",
+            accept: {
+              "text/plain": [".json"]
+            }
+          }
+        ]
+      }}
+    />
+    <!-- <DownloadText title="CSS" content={"empty for now"} /> -->
   </section>
 
   {#each palette as colors}
