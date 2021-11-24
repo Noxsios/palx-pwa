@@ -4,6 +4,7 @@
   import ColorBox from "$lib/ColorBox.svelte";
   import DynamicFavicon from "$lib/DynamicFavicon.svelte";
   import DownloadText from "$lib/DownloadText.svelte";
+  import { SvelteToast } from "@zerodevx/svelte-toast";
 
   let color = "#ffbc00";
 
@@ -155,3 +156,4 @@
   {/each}
 </main>
 <Footer />
+<SvelteToast />

@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   export const ssr = false;
 
-  import { SvelteToast, toast } from "@zerodevx/svelte-toast";
+  import { toast } from "@zerodevx/svelte-toast";
 
   export let title;
   export let content;
@@ -95,5 +95,3 @@
     </svg>
   </button>
 {/if}
-
-<SvelteToast />

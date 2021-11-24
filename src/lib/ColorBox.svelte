@@ -1,9 +1,19 @@
 <script>
+  import { toast } from "@zerodevx/svelte-toast";
+
   export let base;
   export let bg;
   export let index;
   const copyToClipboard = () => {
     navigator.clipboard.writeText(bg);
+
+    toast.push(`Copied ${bg}`, {
+      theme: {
+        "--toastBarBackground": "var(--color-green-600)",
+        "--toastBackground": `${bg}`,
+        "--toastColor": `var(--color-gray-${index < 7 ? 700 : 100})`
+      }
+    });
   };
 </script>
 
