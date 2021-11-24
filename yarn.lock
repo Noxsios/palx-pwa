@@ -2220,6 +2220,11 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+svelte-canvas@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/svelte-canvas/-/svelte-canvas-0.7.1.tgz#98540b5f1a56906f828a4b1983be8749c1b5d3a1"
+  integrity sha512-MsOSxPyown4BTVTuR9LUFiLD/GrD8pubxcKSFGiiRr6IR5jPkBE7WDedwkE4auZw+gniqGSmuXjhC+VltpcZAQ==
+
 svelte-check@^2.2.6:
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.2.10.tgz#ca2e4fde2d077e703792d8301a643c36375f646c"

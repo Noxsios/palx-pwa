@@ -2,17 +2,23 @@
   import palx from "palx";
   import Footer from "$lib/Footer.svelte";
   import ColorBox from "$lib/ColorBox.svelte";
+  import DynamicFavicon from "$lib/DynamicFavicon.svelte";
 
   let color = "#ffbc00";
 
   const handleChange = (e: Event) => {
     const val = (e.target as HTMLInputElement).value;
-    if (val.match(/^#[0-9A-Fa-f]{6}$/i)) {
+
+    if (val.length === 0 || val.length > 7) {
+      return;
+    } else if (val.match(/^#[0-9A-Fa-f]{1,6}$/i)) {
+      color = val.padEnd(7, "0");
+    } else if (val.match(/^#[0-9A-Fa-f]{6}$/i)) {
       color = val;
     }
   };
 
-  $: console.log(`Current base color: ${color}`);
+  $: console.log(`%cCurrent base color: ${color}`, `color: ${color}`);
   $: palette = Object.entries(palx(color))
     .map(([key, value]) => ({
       name: key,
@@ -20,6 +26,12 @@
     }))
     .filter((ele) => Array.isArray(ele.values));
 </script>
+
+<svelte:head>
+  <title>palx-pwa</title>
+</svelte:head>
+
+<DynamicFavicon bind:color />
 
 <main class="flex flex-col items-center justify-center mb-20 mt-4">
   <section id="title-section">
@@ -33,12 +45,12 @@
     <input
       id="picker"
       type="color"
-      class="p-0.5 h-10 mr-3 cursor-pointer"
+      class="p-0.5 h-10 mr-3 cursor-pointer shadow rounded-md"
       value={color}
       on:change={handleChange}
       required
     />
-    <input type="search" spellcheck="false" class="border rounded-md p-2" value={color} on:change={handleChange} />
+    <input type="search" spellcheck="false" class="border rounded-md p-2 shadow" value={color} on:blur={handleChange} />
   </section>
 
   {#each palette as colors}
