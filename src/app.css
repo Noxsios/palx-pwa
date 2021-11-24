@@ -7,3 +7,18 @@ html {
   font-family: "Fira Sans", sans-serif;
   @apply bg-gray-200;
 }
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  border: 4px solid transparent;
+  background-clip: content-box;
+  @apply bg-gray-400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}

@@ -28,14 +28,45 @@
     }
   };
 
+  $: colors = palx(color);
   $: console.log(`%cCurrent base color: ${color}`, `color: ${color}`);
-  $: palette = Object.entries(palx(color))
+  $: palette = Object.entries(colors)
     .map(([key, value]) => ({
       name: key,
       values: value
     }))
     .filter((ele) => Array.isArray(ele.values));
-  $: jsonPalette = JSON.stringify(palx(color), null, 2);
+  $: jsonPalette = JSON.stringify(colors);
+  $: cssRootVars = Object.entries(colors)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return value.map((color, idx) => {
+          if (idx === 0) idx = 0.5;
+          return `--color-${key}-${idx * 100}: ${color};`;
+        });
+      } else {
+        return `--color-${key}: ${value};`;
+      }
+    })
+    .flat()
+    .join("");
+  $: tailwindPalette = JSON.stringify(
+    Object.entries(colors)
+      .map(([key, value]) => {
+        if (Array.isArray(value)) {
+          return {
+            [key]: value.reduce((prev, color, idx) => {
+              if (idx === 0) idx = 0.5;
+              return { ...prev, [idx * 100]: color };
+            }, {})
+          };
+        } else {
+          return;
+        }
+      })
+      .filter(Boolean)
+      .reduce((prev, curr) => ({ ...prev, ...curr }), {})
+  );
 </script>
 
 <svelte:head>
@@ -48,7 +79,7 @@
   <section id="title-section">
     <h1 class="text-2xl my-2">palx-pwa</h1>
     <h2 class="text-xl capitalize my-1 text-gray-700">:: Automatic UI color palette generator</h2>
-    <h2 class="text-md text-gray-500">:: Now with the powers of PWA and Svelte</h2>
+    <h2 class="text-md text-gray-500">:: Now with the powers of a PWA and Svelte</h2>
     <small>Credit to <a class="text-blue-600 underline" href="https://github.com/jxnblk/palx">jxnblk/palx</a></small>
   </section>
 
@@ -80,7 +111,36 @@
         ]
       }}
     />
-    <!-- <DownloadText title="CSS" content={"empty for now"} /> -->
+    <DownloadText
+      title="CSS"
+      content={":root {" + cssRootVars + "}"}
+      fileOptions={{
+        suggestedName: `palx-${color.slice(1)}.css`,
+        types: [
+          {
+            description: "CSS",
+            accept: {
+              "text/plain": [".css"]
+            }
+          }
+        ]
+      }}
+    />
+    <DownloadText
+      title="Tailwind"
+      content={tailwindPalette}
+      fileOptions={{
+        suggestedName: `palx-${color.slice(1)}_tw_colors.js`,
+        types: [
+          {
+            description: "Tailwind theme extension",
+            accept: {
+              "text/plain": [".js"]
+            }
+          }
+        ]
+      }}
+    />
   </section>
 
   {#each palette as colors}
